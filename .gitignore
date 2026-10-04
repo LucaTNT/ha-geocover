@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+# Local live-test state: contains OAuth tokens, never commit
+.live/
+geocover.json

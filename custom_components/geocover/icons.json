@@ -1,0 +1,28 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "ride_in_progress": {
+        "default": "mdi:bike",
+        "state": { "on": "mdi:bike-fast" }
+      },
+      "stolen": {
+        "default": "mdi:shield-check",
+        "state": { "on": "mdi:shield-alert" }
+      }
+    },
+    "device_tracker": {
+      "location": { "default": "mdi:bicycle-electric" }
+    },
+    "sensor": {
+      "range": { "default": "mdi:map-marker-distance" },
+      "odometer": { "default": "mdi:counter" },
+      "last_gps_fix": { "default": "mdi:crosshairs-gps" },
+      "last_connection": { "default": "mdi:access-point-network" },
+      "last_ride_distance": { "default": "mdi:map-marker-path" },
+      "last_ride_duration": { "default": "mdi:timer-outline" },
+      "last_ride_average_speed": { "default": "mdi:speedometer" },
+      "last_ride_elevation_up": { "default": "mdi:elevation-rise" },
+      "last_ride_co2": { "default": "mdi:molecule-co2" }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Log in with your Decathlon account",
+        "description": "1. Open the [Decathlon login page]({url}) and log in with your Decathlon account.\n2. After logging in you land on a page saying **\"Whoops! Looks like something went wrong\"**. This is expected: the login worked.\n3. Click in the browser's address bar and copy the **full** address. It starts with `{redirect_prefix}`. Some browsers hide everything after `/redirect` until you click into the address bar.\n\nThen select **Submit** and paste the address in the next step. The code in it expires after a few minutes."
+      },
+      "reauth_confirm": {
+        "title": "Log in again",
+        "description": "Decathlon Geocover rejected the stored login, so you need to log in again.\n\n1. Open the [Decathlon login page]({url}) and log in with your Decathlon account.\n2. After logging in you land on a page saying **\"Whoops! Looks like something went wrong\"**. This is expected: the login worked.\n3. Click in the browser's address bar and copy the **full** address. It starts with `{redirect_prefix}`. Some browsers hide everything after `/redirect` until you click into the address bar.\n\nThen select **Submit** and paste the address in the next step. The code in it expires after a few minutes."
+      },
+      "paste": {
+        "title": "Paste the address",
+        "description": "Paste the full address of the \"Whoops!\" page. If the code has expired, [open the login page again]({url}) and copy the new address.",
+        "data": {
+          "redirect_url": "Address of the \"Whoops!\" page"
+        },
+        "data_description": {
+          "redirect_url": "Starts with {redirect_prefix}"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "This address has no login code, or it belongs to a different login attempt. Copy the full address of the \"Whoops!\" page, including everything after /redirect.",
+      "code_rejected": "The login code was rejected; it has probably expired. Open the login page again and paste the new address straight away.",
+      "invalid_auth": "Geocover rejected the login. Open the login page again and paste the new address.",
+      "cannot_connect": "Failed to connect",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "This Decathlon account is already configured",
+      "reauth_successful": "Re-authentication was successful",
+      "wrong_account": "You logged in with a different Decathlon account. Log in with the account this entry was set up with.",
+      "cannot_connect": "Failed to connect to the Geocover login service"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Decathlon Geocover options",
+        "data": {
+          "scan_interval": "Polling interval"
+        },
+        "data_description": {
+          "scan_interval": "How often to fetch data from Geocover, in minutes. The bike's 2G module only reports in every so often, so polling faster than it reports won't give fresher data."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "ride_in_progress": {
+        "name": "Ride in progress"
+      },
+      "stolen": {
+        "name": "Stolen"
+      },
+      "ecu_lock": {
+        "name": "ECU lock"
+      }
+    },
+    "device_tracker": {
+      "location": {
+        "state_attributes": {
+          "speed": {
+            "name": "Speed"
+          },
+          "fix_time": {
+            "name": "Fix time"
+          }
+        }
+      }
+    },
+    "sensor": {
+      "range": {
+        "name": "Range"
+      },
+      "odometer": {
+        "name": "Odometer"
+      },
+      "tracker_battery": {
+        "name": "Tracker battery"
+      },
+      "last_gps_fix": {
+        "name": "Last GPS fix"
+      },
+      "last_connection": {
+        "name": "Last connection"
+      },
+      "last_ride_distance": {
+        "name": "Last ride distance",
+        "state_attributes": {
+          "start_time": {
+            "name": "Start time"
+          },
+          "end_time": {
+            "name": "End time"
+          }
+        }
+      },
+      "last_ride_duration": {
+        "name": "Last ride duration",
+        "state_attributes": {
+          "start_time": {
+            "name": "Start time"
+          },
+          "end_time": {
+            "name": "End time"
+          }
+        }
+      },
+      "last_ride_average_speed": {
+        "name": "Last ride average speed",
+        "state_attributes": {
+          "start_time": {
+            "name": "Start time"
+          },
+          "end_time": {
+            "name": "End time"
+          }
+        }
+      },
+      "last_ride_elevation_up": {
+        "name": "Last ride elevation gain",
+        "state_attributes": {
+          "start_time": {
+            "name": "Start time"
+          },
+          "end_time": {
+            "name": "End time"
+          }
+        }
+      },
+      "last_ride_co2": {
+        "name": "Last ride CO₂",
+        "state_attributes": {
+          "start_time": {
+            "name": "Start time"
+          },
+          "end_time": {
+            "name": "End time"
+          }
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "auth_failed": {
+      "message": "Geocover rejected the stored login; log in again."
+    },
+    "update_failed": {
+      "message": "Error fetching data from Geocover: {error}"
+    }
+  }
+}

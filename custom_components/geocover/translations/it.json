@@ -1,0 +1,155 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Accedi con il tuo account Decathlon",
+        "description": "1. Apri la [pagina di accesso Decathlon]({url}) e accedi con il tuo account Decathlon.\n2. Dopo l'accesso arriverai a una pagina con scritto **\"Whoops! Looks like something went wrong\"**. È normale: l'accesso è riuscito.\n3. Fai clic nella barra degli indirizzi del browser e copia l'indirizzo **completo**. Inizia con `{redirect_prefix}`. Alcuni browser nascondono tutto quello che segue `/redirect` finché non fai clic nella barra degli indirizzi.\n\nPoi seleziona **Invia** e incolla l'indirizzo nel passaggio successivo. Il codice contenuto scade dopo pochi minuti."
+      },
+      "reauth_confirm": {
+        "title": "Accedi di nuovo",
+        "description": "Decathlon Geocover ha rifiutato l'accesso salvato, quindi devi accedere di nuovo.\n\n1. Apri la [pagina di accesso Decathlon]({url}) e accedi con il tuo account Decathlon.\n2. Dopo l'accesso arriverai a una pagina con scritto **\"Whoops! Looks like something went wrong\"**. È normale: l'accesso è riuscito.\n3. Fai clic nella barra degli indirizzi del browser e copia l'indirizzo **completo**. Inizia con `{redirect_prefix}`. Alcuni browser nascondono tutto quello che segue `/redirect` finché non fai clic nella barra degli indirizzi.\n\nPoi seleziona **Invia** e incolla l'indirizzo nel passaggio successivo. Il codice contenuto scade dopo pochi minuti."
+      },
+      "paste": {
+        "title": "Incolla l'indirizzo",
+        "description": "Incolla l'indirizzo completo della pagina \"Whoops!\". Se il codice è scaduto, [apri di nuovo la pagina di accesso]({url}) e copia il nuovo indirizzo.",
+        "data": {
+          "redirect_url": "Indirizzo della pagina \"Whoops!\""
+        },
+        "data_description": {
+          "redirect_url": "Inizia con {redirect_prefix}"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Questo indirizzo non contiene un codice di accesso, oppure appartiene a un altro tentativo di accesso. Copia l'indirizzo completo della pagina \"Whoops!\", compreso tutto ciò che segue /redirect.",
+      "code_rejected": "Il codice di accesso è stato rifiutato, probabilmente è scaduto. Apri di nuovo la pagina di accesso e incolla subito il nuovo indirizzo.",
+      "invalid_auth": "Geocover ha rifiutato l'accesso. Apri di nuovo la pagina di accesso e incolla il nuovo indirizzo.",
+      "cannot_connect": "Impossibile connettersi",
+      "unknown": "Errore imprevisto"
+    },
+    "abort": {
+      "already_configured": "Questo account Decathlon è già configurato",
+      "reauth_successful": "Nuova autenticazione riuscita",
+      "wrong_account": "Hai effettuato l'accesso con un altro account Decathlon. Accedi con l'account usato per configurare questa voce.",
+      "cannot_connect": "Impossibile connettersi al servizio di accesso Geocover"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opzioni di Decathlon Geocover",
+        "data": {
+          "scan_interval": "Intervallo di aggiornamento"
+        },
+        "data_description": {
+          "scan_interval": "Ogni quanti minuti leggere i dati da Geocover. Il modulo 2G della bici invia dati solo di tanto in tanto, quindi interrogare più spesso di così non dà dati più aggiornati."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "ride_in_progress": {
+        "name": "Uscita in corso"
+      },
+      "stolen": {
+        "name": "Rubata"
+      },
+      "ecu_lock": {
+        "name": "Blocco centralina"
+      }
+    },
+    "device_tracker": {
+      "location": {
+        "state_attributes": {
+          "speed": {
+            "name": "Velocità"
+          },
+          "fix_time": {
+            "name": "Ora del rilevamento"
+          }
+        }
+      }
+    },
+    "sensor": {
+      "range": {
+        "name": "Autonomia"
+      },
+      "odometer": {
+        "name": "Contachilometri"
+      },
+      "tracker_battery": {
+        "name": "Batteria localizzatore"
+      },
+      "last_gps_fix": {
+        "name": "Ultimo rilevamento GPS"
+      },
+      "last_connection": {
+        "name": "Ultima connessione"
+      },
+      "last_ride_distance": {
+        "name": "Distanza ultima uscita",
+        "state_attributes": {
+          "start_time": {
+            "name": "Inizio"
+          },
+          "end_time": {
+            "name": "Fine"
+          }
+        }
+      },
+      "last_ride_duration": {
+        "name": "Durata ultima uscita",
+        "state_attributes": {
+          "start_time": {
+            "name": "Inizio"
+          },
+          "end_time": {
+            "name": "Fine"
+          }
+        }
+      },
+      "last_ride_average_speed": {
+        "name": "Velocità media ultima uscita",
+        "state_attributes": {
+          "start_time": {
+            "name": "Inizio"
+          },
+          "end_time": {
+            "name": "Fine"
+          }
+        }
+      },
+      "last_ride_elevation_up": {
+        "name": "Dislivello positivo ultima uscita",
+        "state_attributes": {
+          "start_time": {
+            "name": "Inizio"
+          },
+          "end_time": {
+            "name": "Fine"
+          }
+        }
+      },
+      "last_ride_co2": {
+        "name": "CO₂ ultima uscita",
+        "state_attributes": {
+          "start_time": {
+            "name": "Inizio"
+          },
+          "end_time": {
+            "name": "Fine"
+          }
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "auth_failed": {
+      "message": "Geocover ha rifiutato l'accesso salvato; accedi di nuovo."
+    },
+    "update_failed": {
+      "message": "Errore durante la lettura dei dati da Geocover: {error}"
+    }
+  }
+}
