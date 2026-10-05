@@ -165,9 +165,10 @@ async def test_entities(
         assert state(entity_id) == expected
         assert entity_registry.async_get(entity_id).entity_category == "diagnostic"
 
-    # CO₂ unit is undocumented: disabled by default
-    co2 = entity_registry.async_get("sensor.elops_920e_last_ride_co2")
-    assert co2.disabled_by is er.RegistryEntryDisabler.INTEGRATION
+    # CO₂ saved: grams from the API, shown in kg
+    co2 = hass.states.get("sensor.elops_920e_last_ride_co2_saved")
+    assert co2.state == "2.1"
+    assert co2.attributes["unit_of_measurement"] == "kg"
 
 
 async def test_battery_zero_from_bike_list_is_unknown(

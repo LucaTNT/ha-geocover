@@ -57,11 +57,11 @@ One device per bike on the account. Bikes added to the account later appear auto
 | Battery | Bike battery % |
 | Range | km |
 | Odometer | km, total increasing |
-| Speed | Speed at the last GPS fix (assumed km/h) |
+| Speed | Speed at the last GPS fix, km/h |
 | Tracker battery | Battery of the GPS module itself (diagnostic) |
 | Last GPS fix, Last connection | Timestamps (diagnostic) |
-| Last ride distance, duration, average speed, elevation gain | Attributes: `start_time`, `end_time` |
-| Last ride CO₂ | Disabled by default: the API doesn't document the unit (assumed grams) |
+| Last ride distance, duration, average speed, elevation gain | Duration is total elapsed time, not moving time. Attributes: `start_time`, `end_time` |
+| Last ride CO₂ saved | CO₂ saved versus driving, in kg (the API reports grams) |
 | Moving, Ride in progress, Stolen, Charging, Power | Binary sensors |
 | ECU lock | Lock binary sensor: **on means unlocked** (Home Assistant convention) |
 
@@ -84,8 +84,15 @@ minutes, and straight away when a ride ends.
   chain breaks and you'll be asked to log in again.
 - A bike whose battery has never reported (for example a newly registered one, before it's switched
   on) shows the battery as *unknown*. The API reports 0% in that case.
-- Unit assumptions that couldn't be checked on a bike without rides: speed (km/h), ride CO₂ (g),
-  odometer (`GET bike` reports metres according to pygeocover).
+- **The odometer over-counts after each ride.** The API's odometer goes up live while you ride,
+  then Conneqtech adds the ride's distance again when it closes the ride. On a 16 km test ride
+  the bike's display read 279 km while the API reported 295.5 km. The integration shows the
+  API's value unchanged; it can't reliably correct it.
+- **Rides show up with a delay.** "Ride in progress" turns on a few minutes after you set off and
+  off around 15–20 minutes after you stop (server-side). The last-ride sensors update on the poll
+  where it turns off.
+- The bike reports roughly every 5 minutes while powered on and not at all while switched off, so
+  the default 5-minute polling matches it.
 
 ## Privacy
 

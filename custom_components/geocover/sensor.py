@@ -141,12 +141,13 @@ SENSORS: tuple[GeocoverSensorEntityDescription, ...] = (
         attrs_fn=_ride_attrs,
     ),
     GeocoverSensorEntityDescription(
-        # The API doesn't document the unit; grams is pygeocover's best guess.
+        # CO₂ saved versus driving, in grams (checked against the app: 3984 -> ~4 kg)
         key="last_ride_co2",
         translation_key="last_ride_co2",
         device_class=SensorDeviceClass.WEIGHT,
         native_unit_of_measurement=UnitOfMass.GRAMS,
-        entity_registry_enabled_default=False,
+        suggested_unit_of_measurement=UnitOfMass.KILOGRAMS,
+        suggested_display_precision=2,
         value_fn=lambda d: d.latest_ride.co2 if d.latest_ride else None,
         attrs_fn=_ride_attrs,
     ),

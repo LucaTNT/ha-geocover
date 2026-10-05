@@ -132,7 +132,7 @@
         }
       },
       "last_ride_co2": {
-        "name": "CO₂ ultima uscita",
+        "name": "CO₂ risparmiata ultima uscita",
         "state_attributes": {
           "start_time": {
             "name": "Inizio"

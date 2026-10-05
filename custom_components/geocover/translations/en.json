@@ -132,7 +132,7 @@
         }
       },
       "last_ride_co2": {
-        "name": "Last ride CO₂",
+        "name": "Last ride CO₂ saved",
         "state_attributes": {
           "start_time": {
             "name": "Start time"
