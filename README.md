@@ -60,7 +60,8 @@ One device per bike on the account. Bikes added to the account later appear auto
 | Speed | Speed at the last GPS fix, km/h |
 | Tracker battery | Battery of the GPS module itself (diagnostic) |
 | Last GPS fix, Last connection | Timestamps (diagnostic) |
-| Last ride distance, duration, average speed, elevation gain | Duration is total elapsed time, not moving time. Attributes: `start_time`, `end_time` |
+| Last ride distance, duration, average speed | Duration is total elapsed time, not moving time. Attributes: `start_time`, `end_time` |
+| Last ride elevation gain | Disabled by default: unreliable (see Limitations) |
 | Last ride CO₂ saved | CO₂ saved versus driving, in kg (the API reports grams) |
 | Moving, Ride in progress, Stolen, Charging, Power | Binary sensors |
 | ECU lock | Lock binary sensor: **on means unlocked** (Home Assistant convention) |
@@ -88,6 +89,10 @@ minutes, and straight away when a ride ends.
   then Conneqtech adds the ride's distance again when it closes the ride. On a 16 km test ride
   the bike's display read 279 km while the API reported 295.5 km. The integration shows the
   API's value unchanged; it can't reliably correct it.
+- **Ride elevation is unreliable.** A mostly-downhill test ride (136 m → 60 m, with small hills)
+  came back as +401 m / −305 m, wrong in both size and direction. That's typical of GPS altitude
+  noise, and up and down may also be swapped server-side. The elevation gain sensor is disabled
+  by default.
 - **Rides show up with a delay.** "Ride in progress" turns on a few minutes after you set off and
   off around 15–20 minutes after you stop (server-side). The last-ride sensors update on the poll
   where it turns off.

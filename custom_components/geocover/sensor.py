@@ -133,10 +133,12 @@ SENSORS: tuple[GeocoverSensorEntityDescription, ...] = (
         attrs_fn=_ride_attrs,
     ),
     GeocoverSensorEntityDescription(
+        # Unreliable: a mostly-downhill ride (136 -> 60 m) came back as +401/-305 m
         key="last_ride_elevation_up",
         translation_key="last_ride_elevation_up",
         device_class=SensorDeviceClass.DISTANCE,
         native_unit_of_measurement=UnitOfLength.METERS,
+        entity_registry_enabled_default=False,
         value_fn=lambda d: d.latest_ride.elevation_up if d.latest_ride else None,
         attrs_fn=_ride_attrs,
     ),

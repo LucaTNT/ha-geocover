@@ -143,7 +143,6 @@ async def test_entities(
     assert state("sensor.elops_920e_last_ride_distance") == "15.23"
     assert state("sensor.elops_920e_last_ride_duration") == "40.0"
     assert state("sensor.elops_920e_last_ride_average_speed") == "22.8"
-    assert state("sensor.elops_920e_last_ride_elevation_gain") == "120"
     ride = hass.states.get("sensor.elops_920e_last_ride_distance")
     assert ride.attributes["start_time"].isoformat() == "2026-10-03T16:00:00+00:00"
     assert ride.attributes["end_time"].isoformat() == "2026-10-03T16:45:00+00:00"
@@ -164,6 +163,10 @@ async def test_entities(
     ):
         assert state(entity_id) == expected
         assert entity_registry.async_get(entity_id).entity_category == "diagnostic"
+
+    # Elevation gain from the API is unreliable: disabled by default
+    elevation = entity_registry.async_get("sensor.elops_920e_last_ride_elevation_gain")
+    assert elevation.disabled_by is er.RegistryEntryDisabler.INTEGRATION
 
     # CO₂ saved: grams from the API, shown in kg
     co2 = hass.states.get("sensor.elops_920e_last_ride_co2_saved")
